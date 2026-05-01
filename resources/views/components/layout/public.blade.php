@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>FlyonUI Laravel Livewire Starter Kit</title>
+        <title>JangkarMas.id</title>
 
         <!-- Styles / Scripts -->
         @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
@@ -13,12 +13,27 @@
 
         <livewire:styles />
     </head>
-    <body class="bg-base-200 min-h-screen">
-        <main>
-            {{ $slot }}
-        </main>
+   <body class="bg-base-200 min-h-screen">
+    <!-- Public Header -->
+    <header class="bg-blue-600 text-white p-4">
+        <nav class="container mx-auto flex justify-start">
+            <h1 class="text-xl font-bold text-slate-50  !leading-tight lg:text-2xl dark:text-slate-900">JangkarMassApp</h1>
+          
+        </nav>
+    </header>
 
-        <livewire:scripts />
+    <!-- Main Content -->
+    <main class="container mx-auto p-1">
+        {{ $slot }}
+    </main>
 
-    </body>
+    <!-- Footer -->
+    <footer class="sticky bottom-0 bg-gray-200 p-4 mt-8">
+        <div class="container mx-auto text-end">
+            &copy; {{ date('Y') }} JangkarMasApp by@ansori123cs
+        </div>
+    </footer>
+    <livewire:scripts />
+
+</body>
 </html>

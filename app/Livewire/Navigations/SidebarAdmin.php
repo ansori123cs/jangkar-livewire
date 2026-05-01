@@ -13,6 +13,8 @@ class SidebarAdmin extends Component
     ];
     public function render()
     {
-        return view('livewire.navigations.sidebar-admin');
+        return view('livewire.navigations.sidebar-admin', [
+            'menus' => $this->menus
+        ]);
     }
 }
