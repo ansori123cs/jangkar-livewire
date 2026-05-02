@@ -18,33 +18,37 @@
                 Login
             </h1>
 
-            <form class="space-y-6">
+            <form class="space-y-6" wire:submit.prevent="login">
 
                 <div>
-                    @error('login')
-                        <!-- Error -->
-                        <div class="bg-red-50 text-sm p-3 rounded-md flex gap-3 border border-red-100 max-sm:items-start dark:bg-red-900/20 dark:border-red-800/40"
-                            role="alert">
-                            <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
-                                <p class="text-red-900 font-medium dark:text-red-300">Error!</p>
-                                <p class="text-red-900 dark:text-red-400">{{ $message }}</p>
-                            </div>
+                    @if (session()->has('error'))
+                        @error('form.username')
+                            <!-- Error -->
+                            <div class="bg-red-50 text-sm p-3 rounded-md flex gap-3 border border-red-100 max-sm:items-start dark:bg-red-900/20 dark:border-red-800/40"
+                                role="alert">
+                                <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
+                                    <p class="text-red-900 font-medium dark:text-red-300">Error!</p>
+                                    <p class="text-red-900 dark:text-red-400">{{ $message }} {{ session('error') }}</p>
+                                </div>
 
-                        </div>
-                    @enderror
+                            </div>
+                        @enderror
+                    @endif
                 </div>
                 {{-- username --}}
                 <div>
                     <label for="username"
                         class="mb-2 text-slate-900 font-medium text-sm inline-block dark:text-slate-50">Username</label>
-                    <input type="text" id="username" name="username" placeholder="paong.admin.order123" required
+                    <input type="text" id="username" name="username" wire:model.lazy='form.username'
+                        placeholder="paong.admin.order123"
                         class="px-3 py-2.5 text-sm text-slate-900 rounded-md bg-white w-full outline-1 -outline-offset-1 outline-slate-300 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 dark:text-slate-50 dark:bg-neutral-800 dark:outline-neutral-700" />
                 </div>
                 {{-- password --}}
                 <div>
                     <label for="password"
                         class="mb-2 text-slate-900 font-medium text-sm inline-block dark:text-slate-50">Password</label>
-                    <input type="password" id="password" name="password" placeholder="••••••••" required
+                    <input type="password" id="password" name="password" placeholder="••••••••"
+                        wire:model.lazy='form.password'
                         class="px-3 py-2.5 text-sm text-slate-900 rounded-md bg-white w-full outline-1 -outline-offset-1 outline-slate-300 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 dark:text-slate-50 dark:bg-neutral-800 dark:outline-neutral-700" />
                 </div>
                 {{-- forgot password --}}
